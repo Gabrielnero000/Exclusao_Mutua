@@ -1,8 +1,11 @@
-// Algoritmo de Bakery para exclusão mútua.
-// Utiliza um array de ints como fixas de atendimento, onde o menor numero é atendido primeiro
-// Funciona para N processos.
+// Instrução TestAndSet para exclusão mútua.
+// Utiliza um boolean compartilhado como trava.
+// CASO DE FALHA: gera starvation.
 
-package ExlusaoMutua._7_Bakery;
+package ExlusaoMutua._8_TestAndSet;
+
+import ExlusaoMutua._7_Bakery.Lock;
+import ExlusaoMutua._7_Bakery.LockImpl;
 
 public class MyLock extends Thread {
 	
@@ -27,6 +30,8 @@ public class MyLock extends Thread {
 
             //Fim da Seção Crítica
 			lock.releaseCS(id);
+			// CASO DE FALHA:
+			// try {Thread.sleep(200 + id*500);} catch (InterruptedException e) {}
 		}
 	}
 	
